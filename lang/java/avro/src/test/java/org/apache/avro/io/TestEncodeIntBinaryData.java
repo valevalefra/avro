@@ -35,10 +35,12 @@ public class TestEncodeIntBinaryData  {
     return Arrays.asList(new Object[][]{
 
       {127, 5, 0, 2},
-     // {999999999, 5, 0, 2}, //overflow
       {999999999, 10, 0, 5}, //caso che ricopre tutti gli if
       {4, 5, 0, 1},//caso nessun if
       {1027, 3, 0, 2},
+      {0, 3, 0, 1},
+      {-2, 3, 0, 1},
+      {5, 0, 0, 0}, //index 1 out of bounds for lenght 0
 
       //introduce for Pit
       {8156, 10, 0, 2},
@@ -53,9 +55,16 @@ public class TestEncodeIntBinaryData  {
   @Test
   public void Test(){
 
+    int result=0;
     byte[] buf = new byte[bufSize];
-    int result=BinaryData.encodeInt(n, buf, 1);
+    try {
+     result = BinaryData.encodeInt(n, buf, 1);
     Assert.assertEquals(expected,result);
+  }
+    catch(Exception e){
+
+    Assert.assertEquals("Index 1 out of bounds for length 0",e.getMessage());
+  }
 
   }
 

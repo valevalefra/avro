@@ -42,7 +42,8 @@ public class TestCompareBytesBinaryData {
       {5,0,5,5,0,2,3}, //b1>b2 return 5-2
       {12,0,12,5,0,5,7}, //b1>b2 return 12-5
       {5,0,5,12,0,12,-7}, //return negative number
-      {5,0,5,12,0,12,-7},
+      {5,-1,-2,12,-3,-4,2},
+      {5,0,0,12,0,0,0},
 
       //pit
       {5,10,0,5,10,0, 0},
