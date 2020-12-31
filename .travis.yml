@@ -1,0 +1,10 @@
+language: java
+jdk:
+  - openjdk11
+
+addons:
+  sonarcloud:
+    organization: valevalefra
+    token: 3165449dc0f22cb2db52e11b2a1db4b8cec706c1
+script:
+  - mvn verify -DfailIfNoTests=false sonar:sonar -Dsonar.projectKey=valevalefra_avro
