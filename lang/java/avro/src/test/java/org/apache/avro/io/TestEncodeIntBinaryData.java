@@ -18,9 +18,9 @@ public class TestEncodeIntBinaryData  {
   private final int n;
   private final int bufSize;
   private final int pos;
-  private final int expected;
+  private final Object expected;
 
-  public TestEncodeIntBinaryData(int n, int bufSize, int pos, int expected){
+  public TestEncodeIntBinaryData(int n, int bufSize, int pos, Object expected){
 
     this.n = n;
     this.bufSize = bufSize;
@@ -34,18 +34,16 @@ public class TestEncodeIntBinaryData  {
 
     return Arrays.asList(new Object[][]{
 
-      {127, 5, 0, 2},
-      {999999999, 10, 0, 5}, //caso che ricopre tutti gli if
-      {4, 5, 0, 1},//caso nessun if
-      {1027, 3, 0, 2},
-      {0, 3, 0, 1},
-      {-2, 3, 0, 1},
-      {5, 0, 0, 0}, //index 1 out of bounds for lenght 0
+      {1, 5, 1, 1},
+      {-1, 5, -1, 1},
+      {0, 0, 0, "Index 1 out of bounds for length 0"},
 
-      //introduce for Pit
-      {8156, 10, 0, 2},
+      //coverage
+      {999999999, 10, 0, 5},
+      {1027, 3, 0, 2},
       {1046666, 10, 0, 3},
       {134000000, 10, 0, 4},
+
 
 
 
@@ -59,11 +57,11 @@ public class TestEncodeIntBinaryData  {
     byte[] buf = new byte[bufSize];
     try {
      result = BinaryData.encodeInt(n, buf, 1);
-    Assert.assertEquals(expected,result);
+     Assert.assertEquals(expected,result);
   }
     catch(Exception e){
 
-    Assert.assertEquals("Index 1 out of bounds for length 0",e.getMessage());
+    Assert.assertEquals(expected,e.getMessage());
   }
 
   }

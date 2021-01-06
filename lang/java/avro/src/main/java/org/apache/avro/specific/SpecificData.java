@@ -410,6 +410,7 @@ public class SpecificData extends GenericData {
       Class c = datum.getClass();
       if (isStringable(c))
         return Schema.Type.STRING.getName();
+
     }
     return super.getSchemaName(datum);
   }

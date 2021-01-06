@@ -47,16 +47,16 @@ public class TestIsValidValueRecordBuilderBase {
   @Test
   public void test(){
 
-    Schema.Field f = null;
+    Schema.Field field = null;
 
     if(value==null && typeSchema != Schema.Type.NULL) {
-      f = new Schema.Field("f", Schema.create(typeSchema), null, null);
-      Assert.assertFalse(RecordBuilderBase.isValidValue(f, value));
+      field = new Schema.Field("field", Schema.create(typeSchema), null, null);
+      Assert.assertFalse(RecordBuilderBase.isValidValue(field, value));
       return;
     }
     if(value!=null){
-      f = new Schema.Field("f", Schema.create(typeSchema), null, null);
-      Assert.assertTrue(RecordBuilderBase.isValidValue(f, value));
+      field = new Schema.Field("f", Schema.create(typeSchema), null, null);
+      Assert.assertTrue(RecordBuilderBase.isValidValue(field, value));
       return;
     }
 
